@@ -1,0 +1,55 @@
+<html>
+
+<!-- Once again, I "had an idea". -->
+
+<head>
+    <title>URTime</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #002d5a;
+            color: white;
+        }
+        
+        .flex-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        h1 {
+            font-size: 800%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="flex-container">
+        <h2>((URTime))</h2>
+        <h1 id="time">+++TIME+++</h1>
+    </div>
+    <script>
+        const updateClock = () => {
+            let d = new Date();
+
+            // Thanks Javascript for not being normal
+            let hours = (((d.getHours() - 13) % 24) + 24) % 24;
+            let minutes = (((d.getMinutes() - 50) % 60) + 60) % 60;
+
+            if (minutes >= 10) {
+                hours--;
+            }
+
+            document.getElementById("time").innerText =
+                `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${d.getSeconds().toString().padStart(2, "0")}`;
+        }
+
+        updateClock();
+        setInterval(updateClock, 1000)
+    </script>
+</body>
+
+</html>
