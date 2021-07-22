@@ -11,7 +11,7 @@
             background-color: #002d5a;
             color: white;
         }
-        
+
         .flex-container {
             display: flex;
             justify-content: center;
@@ -19,7 +19,7 @@
             flex-direction: column;
             height: 100%;
         }
-        
+
         h1 {
             font-size: 800%;
         }
@@ -36,12 +36,14 @@
             let d = new Date();
 
             // Thanks Javascript for not being normal
-            let hours = (((d.getHours() - 13) % 24) + 24) % 24;
+            let hours = d.getHours() - 13;
             let minutes = (((d.getMinutes() - 50) % 60) + 60) % 60;
 
             if (minutes >= 10) {
                 hours--;
             }
+
+            hours = ((hours % 24) + 24) % 24;
 
             document.getElementById("time").innerText =
                 `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${d.getSeconds().toString().padStart(2, "0")}`;
